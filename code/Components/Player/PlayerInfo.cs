@@ -12,7 +12,7 @@ public sealed class PlayerInfo : Component
 	[Property]
 	private GameObject ItBallMdl { get; set; }
 	[Property]
-	private GameObject PlayerCamera { get; set; }
+	[Sync] private GameObject PlayerCamera { get; set; }
 
 //All of the running components
 	[Sync] public float CurrentStamina { get; set; }
@@ -166,7 +166,7 @@ public sealed class PlayerInfo : Component
 	{
 		if( IsIt == true )
 		{
-			 //PlayerMdl.Tint = new Color( 1.0f, 0.25f, 0.25f );
+			 PlayerMdl.Tint = new Color( 1.0f, 0.25f, 0.25f );
 
 			if( IsHoldingBall == true )
 			{
@@ -176,7 +176,7 @@ public sealed class PlayerInfo : Component
 
 		else if ( IsIt == false )
 		{
-			//PlayerMdl.Tint = new Color( 1.0f, 1.0f, 1.0f );
+			PlayerMdl.Tint = new Color( 1.0f, 1.0f, 1.0f );
 			ItBallMdl.WorldScale = new Vector3( 0, 0, 0 );
 		} 
 	}
@@ -196,16 +196,20 @@ public sealed class PlayerInfo : Component
 		}
 	}
 
-	[Broadcast]
 	public void ThrowBall()
 	{
 		GameObject ItBallSpawn = ItBallPrefab.Clone( CameraPosition + (CameraAngles.Forward * 75f) );
-	
-		var ballComponent = ItBallSpawn.Components.Get<ItBall>();
-		if (ballComponent != null)
+
+		bool success = ItBallSpawn.NetworkSpawn();
+
+		if( success )
 		{
-			var forward = CameraAngles.Forward;
-			ballComponent.BallBody.Velocity = forward * CurrentBallThrow;
+			var ballComponent = ItBallSpawn.Components.Get<ItBall>();
+			if (ballComponent != null)
+			{
+				var forward = CameraAngles.Forward;
+				ballComponent.BallBody.Velocity = forward * CurrentBallThrow;
+			}
 		}
 	}
 }
