@@ -1,0 +1,14 @@
+Multiplayer bugs:
+1. When using the camera as the position and direction for the ball, the firing off becomes inconsistent due to it being a shared component
+2. How can we make the ball viewmodel work right?
+
+
+IEnumerable<CameraComponent> cam = Scene.GetAll<CameraComponent>();
+		var pcam = cam.FirstOrDefault();
+
+		PlayerCamera = pcam.GameObject;
+
+		player = PlayerInfo.Local.player;
+		PlayerMdl = PlayerInfo.Local.PlayerMdl;
+		ItBallMdl = PlayerInfo.Local.ItBallMdl;
+		PlayerCamera = PlayerInfo.Local.PlayerCamera;

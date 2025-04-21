@@ -1,0 +1,41 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root class="@(Network.IsProxy ? "hidden" : "")">
+		<div class="stamina-container">
+			<div class="cooldown-bar" style="height: @( player.CurrentStamina )%; width: 100%;">
+				<p>🏃‍♂️</p>
+			</div>
+		</div>
+
+		@if( player.IsIt )
+		{
+			<div class="isit-container">
+			<title>You're it!</title>
+			</div>
+
+			<div class="ballthrow-container">
+				<div class="ballthrow-bar" style="height: @( (player.CurrentBallThrow / player.BallThrowMax) * 100f )%; width: 100%;">
+					<p>🤾‍♀️</p>
+				</div>
+			</div>
+		}
+
+	<div class="crosshair">
+		<title>⚪</title>
+	</div>
+</root>
+
+@code
+{
+
+	[Property]
+	public PlayerInfo player { get; set; } = PlayerInfo.Local;
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( player.IsIt, player.CurrentStamina, player.CurrentBallThrow );
+}

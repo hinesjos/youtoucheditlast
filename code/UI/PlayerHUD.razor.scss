@@ -1,0 +1,105 @@
+PlayerHUD
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-family: Poppins;
+	font-size: 28px;
+
+	.title
+	{
+		font-size: 25px;
+		font-family: Poppins;
+		color: #fff;
+	}
+
+	> .stamina-container
+	{
+			flex-direction: row; /* Stack items vertically */
+			background-color: rgba(74, 87, 72, 0.8); /* Fixed rgba syntax */
+			border-radius: 5px; /* Rounded corners */
+			border: 5px solid rgb(81, 155, 81); /* Fixed border syntax */
+			position: absolute;
+			bottom: 16px;
+			left: 16px;
+			color: white;
+			display: flex; /* Ensure flex properties work */
+			justify-content: center; /* Center items inside */
+			align-items: center;
+			height: 300px;
+			padding: 24px;
+			overflow: hidden;
+
+		> .cooldown-bar
+			{
+				position: absolute; /* Layer over image */
+				bottom: 0; /* Start from the bottom */
+				background-color: rgba(78, 255, 101, 0.6); /* Semi-transparent blue */
+				text-align: center;
+			}
+	}
+
+	> .ballthrow-container
+	{
+			flex-direction: row; /* Stack items vertically */
+			background-color: rgba(74, 87, 72, 0.8); /* Fixed rgba syntax */
+			border-radius: 5px; /* Rounded corners */
+			border: 5px solid rgb(155, 132, 81); /* Fixed border syntax */
+			position: absolute;
+			bottom: 16px;
+			left: 92px;
+			color: white;
+			display: flex; /* Ensure flex properties work */
+			justify-content: center; /* Center items inside */
+			align-items: center;
+			height: 300px;
+			padding: 24px;
+			overflow: hidden;
+
+		> .ballthrow-bar
+			{
+				position: absolute; /* Layer over image */
+				bottom: 0; /* Start from the bottom */
+				background-color: rgba(255, 172, 78, 0.6); /* Semi-transparent blue */
+				text-align: center;
+			}
+	}
+
+	> .isit-container
+	{
+		flex-direction: row; /* Stack items vertically */
+		background-color: rgba(24, 24, 24, 0.8); /* Fixed rgba syntax */
+		border-radius: 5px; /* Rounded corners */
+		border: 2px solid gray; /* Fixed border syntax */
+		transition: all 0.2s ease; /* Smooth transitions */
+		position: absolute;
+		bottom: 10%;
+		left: 50%;
+		font-weight: bold;
+		text-stroke: 2px black; /* Corrected text-stroke syntax */
+		color: white;
+		display: flex; /* Ensure flex properties work */
+		justify-content: center; /* Center items inside */
+		align-items: center;
+		gap: 10px;
+		padding: 16px;
+		transform: translateX(-50%);
+	}
+
+	> .crosshair
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-family: Poppins;
+		font-size: 14px;
+		transform: translateX(-50%);
+	}
+
+	&.hidden
+	{
+		display: none;
+	}
+}
