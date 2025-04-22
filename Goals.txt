@@ -1,2 +1,5 @@
 Multiplayer bugs:
-1. Ball is only caught when not in motion?
+1. Ball is only caught when owned by player?
+
+Try changing the ownership on ball collision
+Figure out why the IsIt and IsHoldingBall will not change on the player's end?

@@ -114,13 +114,12 @@ public sealed class PlayerInfo : Component
 			player.RunSpeed = player.WalkSpeed;
 		}
 
-		if( Input.Released( "Attack1" ) && IsIt == true )
+		if( Input.Released( "Attack1" ) && IsIt == true && IsHoldingBall == true )
 		{
 			CameraPosition = PlayerCamera.WorldPosition;
 			CameraAngles = PlayerCamera.WorldRotation;
 			ThrowBall();
 
-			IsIt = false;
 			IsHoldingBall = false;
 
 			CurrentBallThrow = 0f;
@@ -211,5 +210,6 @@ public sealed class PlayerInfo : Component
 				ballComponent.BallBody.Velocity = forward * CurrentBallThrow;
 			}
 		}
+
 	}
 }

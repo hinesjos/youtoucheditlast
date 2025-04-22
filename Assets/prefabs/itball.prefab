@@ -7,6 +7,7 @@
     "NetworkMode": 1,
     "NetworkInterpolation": false,
     "NetworkOrphaned": 1,
+    "OwnerTransfer": 0,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
