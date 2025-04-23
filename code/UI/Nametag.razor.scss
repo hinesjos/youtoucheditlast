@@ -17,4 +17,9 @@ Nametag
 		font-family: Poppins;
 		color: #fff;
 	}
+
+	&.hidden
+	{
+		display: none;
+	}
 }

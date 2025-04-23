@@ -21,6 +21,21 @@
         },
         "SpawnPoints": [],
         "StartServer": true
+      },
+      {
+        "__type": "GameManager",
+        "__guid": "fe2d993b-81af-4f5e-8869-9a5b3cc40b7b",
+        "__enabled": false,
+        "GameTime": {
+          "Absolute": 494.62512,
+          "Relative": 319.7746
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [],

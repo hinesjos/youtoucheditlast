@@ -3,7 +3,7 @@
 @inherits PanelComponent
 @namespace Sandbox
 
-<root>
+<root class="@(Network.IsProxy ? "" : "hidden")">
 	<div class="title">@(Network.OwnerConnection.DisplayName)</div>
 </root>
 

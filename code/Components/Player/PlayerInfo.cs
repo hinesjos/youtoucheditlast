@@ -6,11 +6,11 @@ public sealed class PlayerInfo : Component
 {
 //All of the player components
 	[Property]
-	private ModelRenderer PlayerMdl { get; set; }
+	[Sync] private ModelRenderer PlayerMdl { get; set; }
 	[Property]
-	private PlayerController player { get; set; }
+	[Sync] private PlayerController player { get; set; }
 	[Property]
-	private GameObject ItBallMdl { get; set; }
+	[Sync] private GameObject ItBallMdl { get; set; }
 	[Property]
 	[Sync] private GameObject PlayerCamera { get; set; }
 
@@ -166,17 +166,11 @@ public sealed class PlayerInfo : Component
 		if( IsIt == true )
 		{
 			 PlayerMdl.Tint = new Color( 1.0f, 0.25f, 0.25f );
-
-			if( IsHoldingBall == true )
-			{
-				//ItBallMdl.WorldScale = new Vector3( 0.2f, 0.2f, 0.2f );
-			}
 		}
 
-		else if ( IsIt == false )
+		else if ( IsIt == false)
 		{
 			PlayerMdl.Tint = new Color( 1.0f, 1.0f, 1.0f );
-			ItBallMdl.WorldScale = new Vector3( 0, 0, 0 );
 		} 
 	}
 

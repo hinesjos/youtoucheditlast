@@ -5,8 +5,9 @@
 
 <root class="@(Network.IsProxy ? "hidden" : "")">
 		<div class="stamina-container">
+			<p>🏃‍♂️</p>
 			<div class="cooldown-bar" style="height: @( player.CurrentStamina )%; width: 100%;">
-				<p>🏃‍♂️</p>
+				
 			</div>
 		</div>
 
@@ -17,8 +18,9 @@
 			</div>
 
 			<div class="ballthrow-container">
+				<p>🤾‍♀️</p>
 				<div class="ballthrow-bar" style="height: @( (player.CurrentBallThrow / player.BallThrowMax) * 100f )%; width: 100%;">
-					<p>🤾‍♀️</p>
+				
 				</div>
 			</div>
 		}
