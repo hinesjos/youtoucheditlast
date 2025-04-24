@@ -13,6 +13,8 @@ public sealed class PlayerInfo : Component
 	[Sync] private GameObject ItBallMdl { get; set; }
 	[Property]
 	[Sync] private GameObject PlayerCamera { get; set; }
+	[Property]
+	[Sync] public string PlayerName { get; set; }
 
 //All of the running components
 	[Sync] public float CurrentStamina { get; set; }
@@ -81,6 +83,8 @@ public sealed class PlayerInfo : Component
 		PlayerCamera = PlayerInfo.Local.PlayerCamera;
 
 		ItBallMdl.SetParent( PlayerCamera );
+
+		PlayerName = Network.OwnerConnection.DisplayName;
 
 		PlayerInfo.Local.ItBallMdl.LocalPosition = new Vector3( ItBallMdl.LocalPosition.x, ItBallMdl.LocalPosition.y, -15f );
 

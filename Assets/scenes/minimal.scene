@@ -217,17 +217,6 @@
       ]
     },
     {
-      "__guid": "e0a9c0a8-b157-4585-a989-2250d654f9a9",
-      "Flags": 0,
-      "Name": "itball",
-      "Position": "-146.2587,-271.826,32",
-      "Enabled": true,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "__Prefab": "prefabs/itball.prefab",
-      "__PrefabVariables": {}
-    },
-    {
       "__guid": "3a74a423-798f-465a-867d-148294b4d756",
       "Flags": 0,
       "Name": "Camera",

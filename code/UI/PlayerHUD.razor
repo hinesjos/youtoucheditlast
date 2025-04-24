@@ -11,23 +11,29 @@
 			</div>
 		</div>
 
-		@if( player.IsIt )
-		{
+
 			<div class="isit-container">
-			<title>You're it!</title>
+			@if( player.IsIt ){<title>You're it!</title>}
+			@if( !player.IsIt ){<title>@GM.PlayerIt is it!</title>}
 			</div>
 
+			@if( player.IsIt )
+			{
 			<div class="ballthrow-container">
 				<p>🤾‍♀️</p>
 				<div class="ballthrow-bar" style="height: @( (player.CurrentBallThrow / player.BallThrowMax) * 100f )%; width: 100%;">
 				
 				</div>
 			</div>
-		}
+			}
 
-	<div class="crosshair">
-		<title>⚪</title>
-	</div>
+		<div class="timer-container">
+			<p>🕤@GM.TimeLeftString</p>
+		</div>
+
+		<div class="crosshair">
+			<title>⚪</title>
+		</div>
 </root>
 
 @code
@@ -35,9 +41,23 @@
 
 	[Property]
 	public PlayerInfo player { get; set; } = PlayerInfo.Local;
+	[Property]
+	public GameManager GM { get; set; }
+
+	protected override void OnStart()
+	{
+		GetTimer();
+	}
+
+	[Rpc.Broadcast]
+	public void GetTimer()
+	{
+		IEnumerable<GameManager> GMList = Scene.GetAllComponents<GameManager>();
+		GM = GMList.FirstOrDefault();
+	}
 
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( player.IsIt, player.CurrentStamina, player.CurrentBallThrow );
+	protected override int BuildHash() => System.HashCode.Combine( player.IsIt, player.CurrentStamina, player.CurrentBallThrow, GM.TimeLeftString, GM.PlayerIt );
 }

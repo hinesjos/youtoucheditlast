@@ -415,6 +415,7 @@
           {
             "__type": "Sandbox.PlayerHUD",
             "__guid": "54896b10-f30b-48b2-ad8d-5f7ad468e174",
+            "GM": null,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,

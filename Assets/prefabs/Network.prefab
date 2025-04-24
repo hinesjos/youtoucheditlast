@@ -25,17 +25,22 @@
       {
         "__type": "GameManager",
         "__guid": "fe2d993b-81af-4f5e-8869-9a5b3cc40b7b",
-        "__enabled": false,
-        "GameTime": {
-          "Absolute": 494.62512,
-          "Relative": 319.7746
-        },
+        "GameEnded": false,
+        "MaxGameTime": 300,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "PlayerIt": null,
+        "PlayerSet": false,
+        "TimeCountdown": {
+          "Absolute": 0,
+          "Relative": 34687.19
+        },
+        "TimeLeft": 0,
+        "TimeLeftString": null
       }
     ],
     "Children": [],
