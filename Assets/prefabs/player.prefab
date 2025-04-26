@@ -5,6 +5,19 @@
     "Name": "player",
     "Enabled": true,
     "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "Spectator",
+        "__guid": "fccf3b60-6d6c-434e-8630-2ede779a734f",
+        "IsSpectating": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
     "Children": [
       {
         "__guid": "85d20b8d-bace-4b67-8f85-5907a258d001",
@@ -185,6 +198,7 @@
               "go": "ce1c32eb-de01-4aba-9688-98a83b6a7fca",
               "component_type": "SkinnedModelRenderer"
             },
+            "PlayerName": null,
             "StaminaDrainRate": 20,
             "StaminaRegenDelay": 1,
             "StaminaRegenRate": 10
@@ -387,18 +401,59 @@
                 "OnComponentUpdate": null
               }
             ]
+          },
+          {
+            "__guid": "0fe2624e-9364-4e59-ac60-8fcd5f46d356",
+            "Flags": 0,
+            "Name": "PlayerHUD",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.ScreenPanel",
+                "__guid": "8850445e-aa2e-4861-ae27-95c2df7bc86e",
+                "AutoScreenScale": true,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Opacity": 1,
+                "Scale": 1,
+                "ScaleStrategy": "ConsistentHeight",
+                "TargetCamera": null,
+                "ZIndex": 100
+              },
+              {
+                "__type": "Sandbox.PlayerHUD",
+                "__guid": "919e5756-2ef2-4a46-9d6f-c6716c3e150a",
+                "GM": null,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "player": {
+                  "_type": "component",
+                  "component_id": "4cdb19d5-ccc3-4267-996c-05ad4367ba85",
+                  "go": "85d20b8d-bace-4b67-8f85-5907a258d001",
+                  "component_type": "PlayerInfo"
+                }
+              }
+            ]
           }
         ]
       },
       {
-        "__guid": "a8c25663-a34b-49fd-b8a9-f5b263c1dac9",
+        "__guid": "b2fb30fd-4277-4ae8-a0ff-eb565c62d03b",
         "Flags": 0,
-        "Name": "PlayerHUD",
+        "Name": "SpectatorUI",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.ScreenPanel",
-            "__guid": "42eec5d8-d375-4999-b921-74af19150bd7",
+            "__guid": "2ea2d13c-8cbe-42b5-aea7-223e544304aa",
             "AutoScreenScale": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -413,9 +468,9 @@
             "ZIndex": 100
           },
           {
-            "__type": "Sandbox.PlayerHUD",
-            "__guid": "54896b10-f30b-48b2-ad8d-5f7ad468e174",
-            "GM": null,
+            "__type": "Sandbox.SpectatorHUD",
+            "__guid": "4cc4f32f-f0b4-46e8-bb81-172331eb6d26",
+            "MyStringValue": "You are now a spectator.",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -424,9 +479,9 @@
             "OnComponentUpdate": null,
             "player": {
               "_type": "component",
-              "component_id": "4cdb19d5-ccc3-4267-996c-05ad4367ba85",
-              "go": "85d20b8d-bace-4b67-8f85-5907a258d001",
-              "component_type": "PlayerInfo"
+              "component_id": "fccf3b60-6d6c-434e-8630-2ede779a734f",
+              "go": "51a5deab-b8f6-4bfa-93de-4576e6772f9f",
+              "component_type": "Spectator"
             }
           }
         ]

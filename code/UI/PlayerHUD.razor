@@ -13,8 +13,10 @@
 
 
 			<div class="isit-container">
-			@if( player.IsIt ){<title>You're it!</title>}
-			@if( !player.IsIt ){<title>@GM.PlayerIt is it!</title>}
+			@if( player.IsIt && GM.TimeLeftString != "00:00"){<title>You're it!</title>}
+			@if( !player.IsIt && GM.TimeLeftString != "00:00"){<title>@GM.PlayerIt is it!</title>}
+			@if( GM.TimeLeftString == "00:00" && player.PlayerName != GM.PlayerIt ){<title>@GM.PlayerIt loses!</title>}
+			@if( GM.TimeLeftString == "00:00" ){<title>You lose!</title>}
 			</div>
 
 			@if( player.IsIt )

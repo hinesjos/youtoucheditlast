@@ -4,10 +4,15 @@ public sealed class ItBall : Component, Component.ICollisionListener
 {
 	[Property]
 	public Rigidbody BallBody { get; set; }
+	[Property, ResourceType("sound")]
+	[Sync] public string ThrowingSound { get; set; }
+	[Property, ResourceType("sound")]
+	[Sync] public string TaggingSound { get; set; }
 
 	protected override void OnStart()
 	{
 		this.Network.DropOwnership();
+		PlaySound();
 	}
 
 	[Rpc.Broadcast]
@@ -35,7 +40,6 @@ public sealed class ItBall : Component, Component.ICollisionListener
 			ChangePlayerValues();
 			TagPlayer( player );
 
-			Log.Info( player.IsIt );
 			GameObject.Destroy();
 		}
 	}
@@ -43,8 +47,18 @@ public sealed class ItBall : Component, Component.ICollisionListener
 	[Rpc.Broadcast]
 	public void TagPlayer( PlayerInfo plr )
 	{
-		plr.IsIt = true;
+		if( plr.IsIt == false )
+		{
+			Sound.Play( TaggingSound );
+			plr.IsIt = true;
+		}
 		plr.IsHoldingBall = true;
+	}
+
+	[Rpc.Broadcast]
+	public void PlaySound()
+	{
+		Sound.Play( ThrowingSound );
 	}
 }
 

@@ -1,50 +1,49 @@
 {
   "RootObject": {
-    "__guid": "69bc0644-7438-4877-a9ef-25bf88a917f7",
+    "__guid": "3a74a423-798f-465a-867d-148294b4d756",
     "Flags": 0,
-    "Name": "network",
+    "Name": "camera",
+    "Tags": "maincamera",
     "Enabled": true,
-    "NetworkMode": 1,
     "Components": [
       {
-        "__type": "Sandbox.NetworkHelper",
-        "__guid": "959aa27e-8555-4b00-8f7b-3222b6bf7a1d",
+        "__type": "Sandbox.CameraComponent",
+        "__guid": "10017ee1-21bf-4cc0-9fe9-140805c2ae0d",
+        "BackgroundColor": "0.33333,0.46275,0.52157,1",
+        "ClearFlags": "All",
+        "FieldOfView": 60,
+        "FovAxis": "Horizontal",
+        "IsMainCamera": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "PlayerPrefab": {
-          "_type": "gameobject",
-          "prefab": "prefabs/player.prefab"
-        },
-        "SpawnPoints": [],
-        "StartServer": true
+        "Orthographic": false,
+        "OrthographicHeight": 1204,
+        "Priority": 1,
+        "RenderExcludeTags": "",
+        "RenderTags": "",
+        "TargetEye": "None",
+        "Viewport": "0,0,1,1",
+        "ZFar": 10000,
+        "ZNear": 10
       },
       {
-        "__type": "GameManager",
-        "__guid": "fe2d993b-81af-4f5e-8869-9a5b3cc40b7b",
-        "GameEnded": false,
-        "MaxGameTime": 60,
+        "__type": "Sandbox.Vignette",
+        "__guid": "986780c4-0a24-4494-9744-ecfc89ad1d40",
+        "Center": "0.5,0.5",
+        "Color": "0,0,0,1",
+        "Intensity": 0.2,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "PlayerIt": null,
-        "PlayerSet": false,
-        "SinceGameEnded": {
-          "Absolute": 0,
-          "Relative": 1772.9503
-        },
-        "TimeCountdown": {
-          "Absolute": 0,
-          "Relative": 1772.9503
-        },
-        "TimeLeft": 0,
-        "TimeLeftString": null
+        "Roundness": 1,
+        "Smoothness": 1
       }
     ],
     "Children": [],

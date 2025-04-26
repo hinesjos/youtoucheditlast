@@ -7,6 +7,7 @@ PlayerHUD
 	bottom: 0;
 	font-family: Poppins;
 	font-size: 28px;
+	
 
 	.title
 	{
@@ -91,11 +92,11 @@ PlayerHUD
 	{
 		flex-direction: row; /* Stack items vertically */
 		background-color: rgba(24, 24, 24, 0.8); /* Fixed rgba syntax */
-		border-radius: 5px; /* Rounded corners */
+		border-radius: 50px; /* Rounded corners */
 		border: 2px solid gray; /* Fixed border syntax */
 		transition: all 0.2s ease; /* Smooth transitions */
 		position: absolute;
-		bottom: 10%;
+		bottom: 5%;
 		left: 50%;
 		font-weight: bold;
 		text-stroke: 2px black; /* Corrected text-stroke syntax */
@@ -106,13 +107,14 @@ PlayerHUD
 		gap: 10px;
 		padding: 16px;
 		transform: translateX(-50%);
+		font-size: 40px;
 	}
 
 	> .timer-container
 	{
 		flex-direction: row; /* Stack items vertically */
 		background-color: rgba(24, 24, 24, 0.8); /* Fixed rgba syntax */
-		border-radius: 5px; /* Rounded corners */
+		border-radius: 50px; /* Rounded corners */
 		border: 2px solid gray; /* Fixed border syntax */
 		transition: all 0.2s ease; /* Smooth transitions */
 		position: absolute;

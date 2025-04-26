@@ -18,6 +18,8 @@ public sealed class GameManager : Component
 	[Property]
 	[Sync] public string PlayerIt { get; set; }
 	Random rnd = new Random();
+	[Property]
+	[Sync] public TimeSince SinceGameEnded { get; set; };
 
 	protected override void OnFixedUpdate()
 	{
@@ -36,7 +38,20 @@ public sealed class GameManager : Component
 		{
 			GameEnd();
 			GameEnded = true;
+			SinceGameEnded = 0;
 		}
+
+		if( GameEnded == true && SinceGameEnded >= 10f && playercount >= 2 )
+		{
+			GameStart( players, playercount );
+			GameEnded = false;
+		}
+
+		else if( GameEnded == true && SinceGameEnded >= 10f && playercount < 2 )
+		{
+		}
+
+		WhoIsIt();
 	}
 
 	[Rpc.Broadcast]
@@ -51,6 +66,14 @@ public sealed class GameManager : Component
 	public void GameStart( IEnumerable<PlayerInfo> players, int playercount )
 	{
 		TimeLeft = MaxGameTime;
+		TimeCountdown = 0;
+
+		foreach( var p in players )
+		{
+			p.IsIt = false;
+			p.IsHoldingBall = false;
+		}
+
 		List<PlayerInfo> playerslist = players.ToList();
 
 		var player = playerslist[ rnd.Next( playercount )];
@@ -70,8 +93,17 @@ public sealed class GameManager : Component
 			if( p.IsIt == true )
 			{
 				Log.Info( $"{p.PlayerName} loses!");
+				Log.Info($"{p.PlayerName}: {p.IsIt}");
+				var spec = p.GameObject.Parent.Components.Get<Spectator>();
+				if( spec != null )
+				{
+					spec.IsSpectating = true;
+				}
+				p.GameObject.Destroy();
 			}
 		}
+
+
 	}
 
 	[Rpc.Broadcast]

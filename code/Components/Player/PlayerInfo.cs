@@ -129,7 +129,7 @@ public sealed class PlayerInfo : Component
 			CurrentBallThrow = 0f;
 		}
 
-		if( Input.Down( "Attack1" )  && IsIt == true )
+		if( Input.Down( "Attack1" )  && IsIt == true && IsHoldingBall == true )
 		{
 			IsCharging = true;
 		}

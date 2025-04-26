@@ -15,8 +15,8 @@
         "BodyGroups": 18446744073709551615,
         "CreateAttachments": false,
         "MaterialGroup": null,
-        "MaterialOverride": "sugmas_textures/woolfibers6.vmat",
-        "Model": "models/dev/sphere.vmdl",
+        "MaterialOverride": "materials/trimsheets/metal/metal_trim_clean.vmat",
+        "Model": "models/sphere.vmdl",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -46,7 +46,9 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "TaggingSound": "sounds/tag.sound",
+        "ThrowingSound": "sounds/throw.sound"
       },
       {
         "__type": "Sandbox.SphereCollider",
@@ -97,7 +99,65 @@
         "StartAsleep": false
       }
     ],
-    "Children": [],
+    "Children": [
+      {
+        "__guid": "b58a909d-27ea-485b-bca5-27b083b14735",
+        "Flags": 0,
+        "Name": "Sound Point",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.SoundPointComponent",
+            "__guid": "247366c8-0bf2-4e68-88e1-2edaf37ae0a6",
+            "Distance": 500,
+            "DistanceAttenuation": true,
+            "DistanceAttenuationOverride": true,
+            "Falloff": [
+              {
+                "x": 0,
+                "y": 1,
+                "in": 3.1415927,
+                "out": -3.1415927,
+                "mode": "Mirrored"
+              },
+              {
+                "x": 1,
+                "y": 0,
+                "in": 0,
+                "out": 0,
+                "mode": "Mirrored"
+              }
+            ],
+            "Force2d": false,
+            "MaxRepeatTime": 1,
+            "MinRepeatTime": 1,
+            "Occlusion": false,
+            "OcclusionOverride": false,
+            "OcclusionRadius": 32,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Pitch": 1,
+            "PlayOnStart": true,
+            "ReflectionOverride": false,
+            "Reflections": false,
+            "Repeat": true,
+            "SoundEvent": "sounds/heartbeat.sound",
+            "SoundOverride": true,
+            "StopOnNew": false,
+            "TargetMixer": {
+              "Name": "unknown",
+              "Id": "00000000-0000-0000-0000-000000000000"
+            },
+            "Volume": 1
+          }
+        ]
+      }
+    ],
     "__variables": [],
     "__properties": {
       "FixedUpdateFrequency": 50,
@@ -129,7 +189,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "sugmatextures.woolfibers6#37288"
+    "facepunch.metal_trim_clean#43482"
   ],
   "__version": 1
 }

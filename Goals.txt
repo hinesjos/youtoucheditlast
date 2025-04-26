@@ -1,14 +1,13 @@
 Hot Potato Checklist:
 
-1. Make full game loop
-- Reset game 10s after finishing the game (run GameStart)
-
-2. Add sound effects
-- Throwing
-- Tagging
-
-3. Add visual effects
+1. Add visual effects
 - Vignette when close to the ball that scales
 - Add sway to camera when running/walking
 
-4. Add a TAB playerlist
+2. Add a TAB playerlist
+
+3. Make scene reload when clearing game
+
+4. Test full runthrough of the game on public branch
+
+5. Add a Hot Potato map to play on
