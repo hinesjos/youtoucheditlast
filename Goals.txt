@@ -1,13 +1,5 @@
-Hot Potato Checklist:
+Hot Potato Goals:
 
-1. Add visual effects
-- Vignette when close to the ball that scales
-- Add sway to camera when running/walking
-
-2. Add a TAB playerlist
-
-3. Make scene reload when clearing game
-
-4. Test full runthrough of the game on public branch
-
-5. Add a Hot Potato map to play on
+1. Finish full gameloop of killing a player if they're it before starting the next round
+2. Add a spectator view to allow users to view other players' screens
+3. Test public

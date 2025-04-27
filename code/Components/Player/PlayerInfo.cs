@@ -27,7 +27,7 @@ public sealed class PlayerInfo : Component
 	public float StaminaRegenRate { get; set; } = 10f;
 	[Property]
 	public float StaminaRegenDelay { get; set; } = 1f;
-	[Sync] public float RunningSpeed { get; set; }
+	public float RunningSpeed { get; set; }
 
 //All of the ball logic
 	[Property]
@@ -45,14 +45,14 @@ public sealed class PlayerInfo : Component
 	[Property]
 	public float BallOscillationSpeed { get; set; } = 2f;
 	
-	[Sync] public bool IsCharging {get; set; } = false;
-	[Sync] public bool OscillatingUp { get; set; } = true;
-	[Sync] public float OscillationTime { get; set; }
-	[Sync] public float CurrentBallThrow { get; set; }
+	public bool IsCharging {get; set; } = false;
+	public bool OscillatingUp { get; set; } = true;
+	public float OscillationTime { get; set; }
+	public float CurrentBallThrow { get; set; }
 	[Sync] public Vector3 CameraPosition { get; set; }
 	[Sync] public Angles CameraAngles { get; set; }
 
-	[Sync] TimeSince _lastRun { get; set; };
+	TimeSince _lastRun { get; set; }
 
 	public static PlayerInfo Local
 	{

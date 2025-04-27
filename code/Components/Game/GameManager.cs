@@ -4,28 +4,37 @@ using System;
 public sealed class GameManager : Component
 {
 	[Property]
-	[Sync] public double MaxGameTime { get; set; } = 300f;
+	public double MaxGameTime { get; set; } = 300f;
 	[Property]
-	[Sync] public TimeSince TimeCountdown { get; set; };
+	public TimeSince TimeCountdown { get; set; }
 	[Property]
-	[Sync] public double TimeLeft { get; set; }
+	public double TimeLeft { get; set; }
 	[Property]
-	[Sync] public String TimeLeftString { get; set; }
+	[Sync(SyncFlags.FromHost)] public String TimeLeftString { get; set; }
 	[Property]
-	[Sync] public bool PlayerSet { get; set; }
+	[Sync(SyncFlags.FromHost)] public bool PlayerSet { get; set; }
 	[Property]
-	[Sync] public bool GameEnded { get; set; }
+	[Sync(SyncFlags.FromHost)] public bool GameEnded { get; set; }
 	[Property]
-	[Sync] public string PlayerIt { get; set; }
+	[Sync(SyncFlags.FromHost)] public string PlayerIt { get; set; }
 	Random rnd = new Random();
 	[Property]
-	[Sync] public TimeSince SinceGameEnded { get; set; };
+	public TimeSince SinceGameEnded { get; set; }
+	[Property]
+	public TimeSpan timespan { get; set; }
+	[Sync] public TimeUntil Timer { get; set; } = new();
+
+    [ConCmd( "timer" )] //client request
+    static void TimerCommand()
+    {
+        Log.Error( Game.ActiveScene.GetAllComponents<GameManager>().First().Timer.Passed );
+    }
 
 	protected override void OnFixedUpdate()
-	{
-		SetTimer();
-
+	{		
 		IEnumerable<PlayerInfo> players = Scene.GetAllComponents<PlayerInfo>();
+		if( players == null ) return;
+		
 		int playercount = players.Count();
 
 		if( playercount >= 1 && PlayerSet == false )
@@ -34,9 +43,14 @@ public sealed class GameManager : Component
 			PlayerSet = true;
 		}
 
-		if( TimeLeft == 0 && GameEnded == false )
+		if( GameEnded == false )
 		{
-			GameEnd();
+			SetTimer();
+		}
+
+		if( TimeCountdown == 0 && GameEnded == false )
+		{
+			GameEnd( players );
 			GameEnded = true;
 			SinceGameEnded = 0;
 		}
@@ -49,45 +63,47 @@ public sealed class GameManager : Component
 
 		else if( GameEnded == true && SinceGameEnded >= 10f && playercount < 2 )
 		{
-		}
 
-		WhoIsIt();
+		}
 	}
 
 	[Rpc.Broadcast]
 	public void SetTimer()
 	{
 		TimeLeft = Math.Floor(Math.Clamp( MaxGameTime - TimeCountdown, 0f, MaxGameTime ));
-		TimeSpan timespan = TimeSpan.FromSeconds( TimeLeft );
+		timespan = TimeSpan.FromSeconds( TimeLeft );
 		TimeLeftString = timespan.ToString(@"mm\:ss");
 	}
 
 	[Rpc.Broadcast]
 	public void GameStart( IEnumerable<PlayerInfo> players, int playercount )
 	{
-		TimeLeft = MaxGameTime;
-		TimeCountdown = 0;
+		TimeLeft = 0f;
 
 		foreach( var p in players )
 		{
-			p.IsIt = false;
-			p.IsHoldingBall = false;
+			if( p != null )
+			{
+				p.IsIt = false;
+				p.IsHoldingBall = false;	
+			}
 		}
 
 		List<PlayerInfo> playerslist = players.ToList();
 
 		var player = playerslist[ rnd.Next( playercount )];
 
-		player.IsIt = true;
-		player.IsHoldingBall = true;
-		PlayerIt = player.PlayerName;
+		if( player != null )
+		{
+			player.IsIt = true;
+			player.IsHoldingBall = true;
+			PlayerIt = player.PlayerName;
+		}
 	}
 
 	[Rpc.Broadcast]
-	public void GameEnd()
+	public void GameEnd( IEnumerable<PlayerInfo> players )
 	{
-		IEnumerable<PlayerInfo> players = Scene.GetAllComponents<PlayerInfo>();
-
 		foreach( var p in players )
 		{
 			if( p.IsIt == true )
@@ -95,28 +111,14 @@ public sealed class GameManager : Component
 				Log.Info( $"{p.PlayerName} loses!");
 				Log.Info($"{p.PlayerName}: {p.IsIt}");
 				var spec = p.GameObject.Parent.Components.Get<Spectator>();
-				if( spec != null )
-				{
-					spec.IsSpectating = true;
-				}
-				p.GameObject.Destroy();
+				//if( spec != null )
+				//{
+				//	spec.IsSpectating = true;
+				//}
+				//p.GameObject.Destroy();
 			}
 		}
 
 
-	}
-
-	[Rpc.Broadcast]
-	public void WhoIsIt()
-	{
-		IEnumerable<PlayerInfo> players = Scene.GetAllComponents<PlayerInfo>();
-
-		foreach( var p in players )
-		{
-			if( p.IsIt == true )
-			{
-				PlayerIt = p.PlayerName;
-			}
-		}
 	}
 }

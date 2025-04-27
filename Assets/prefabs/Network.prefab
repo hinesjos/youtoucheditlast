@@ -5,6 +5,7 @@
     "Name": "network",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkOrphaned": 1,
     "Components": [
       {
         "__type": "Sandbox.NetworkHelper",
@@ -26,7 +27,7 @@
         "__type": "GameManager",
         "__guid": "fe2d993b-81af-4f5e-8869-9a5b3cc40b7b",
         "GameEnded": false,
-        "MaxGameTime": 60,
+        "MaxGameTime": 120,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -37,14 +38,15 @@
         "PlayerSet": false,
         "SinceGameEnded": {
           "Absolute": 0,
-          "Relative": 1772.9503
+          "Relative": 254.75482
         },
         "TimeCountdown": {
           "Absolute": 0,
-          "Relative": 1772.9503
+          "Relative": 254.75482
         },
         "TimeLeft": 0,
-        "TimeLeftString": null
+        "TimeLeftString": null,
+        "timespan": "00:00:00"
       }
     ],
     "Children": [],

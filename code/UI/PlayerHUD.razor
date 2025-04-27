@@ -16,7 +16,7 @@
 			@if( player.IsIt && GM.TimeLeftString != "00:00"){<title>You're it!</title>}
 			@if( !player.IsIt && GM.TimeLeftString != "00:00"){<title>@GM.PlayerIt is it!</title>}
 			@if( GM.TimeLeftString == "00:00" && player.PlayerName != GM.PlayerIt ){<title>@GM.PlayerIt loses!</title>}
-			@if( GM.TimeLeftString == "00:00" ){<title>You lose!</title>}
+			@if( GM.TimeLeftString == "00:00" && player.PlayerName == GM.PlayerIt  ){<title>You lose!</title>}
 			</div>
 
 			@if( player.IsIt )
@@ -54,8 +54,7 @@
 	[Rpc.Broadcast]
 	public void GetTimer()
 	{
-		IEnumerable<GameManager> GMList = Scene.GetAllComponents<GameManager>();
-		GM = GMList.FirstOrDefault();
+		GM = Scene.GetAllComponents<GameManager>().FirstOrDefault();
 	}
 
 	/// <summary>

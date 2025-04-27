@@ -53,6 +53,14 @@ public sealed class ItBall : Component, Component.ICollisionListener
 			plr.IsIt = true;
 		}
 		plr.IsHoldingBall = true;
+
+		IEnumerable<GameManager> gmlist = Scene.GetAllComponents<GameManager>();
+		var gm = gmlist.FirstOrDefault();
+
+		if( gm != null )
+		{
+			gm.PlayerIt = plr.PlayerName;
+		}
 	}
 
 	[Rpc.Broadcast]
